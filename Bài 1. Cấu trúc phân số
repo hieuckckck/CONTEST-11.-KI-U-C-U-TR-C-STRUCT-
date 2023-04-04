@@ -1,0 +1,148 @@
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+struct ps{
+    int tu;
+    int mau;
+};
+typedef struct ps ps;
+int gcd(int a,int b){
+    while(b){
+        int t=a%b;
+        a=b;
+        b=t;
+    }
+    return a;
+}
+int lcm(int a,int b){
+    return a/gcd(a,b)*b;
+}
+ps toigian(ps a){
+    ps res;
+    int uc=gcd(abs(a.tu),abs(a.mau));
+    res.tu=a.tu/uc;
+    res.mau=a.mau/uc;
+    return res;
+}
+ps tong(ps a,ps b){
+    ps res;
+    res.tu=a.tu*b.mau+b.tu*a.mau;
+    res.mau=a.mau*b.mau;
+    return toigian(res);
+}
+ps hieu(ps a,ps b){
+    ps res;
+    res.tu=a.tu*b.mau-b.tu*a.mau;
+    res.mau=a.mau*b.mau;
+    return toigian(res);
+}
+int main() {
+    ps a;ps b;
+    cin>>a.tu>>a.mau>>b.tu>>b.mau;
+    a=toigian(a);b=toigian(b);
+    cout<<a.tu<<"/"<<a.mau<<endl;
+    cout<<b.tu<<"/"<<b.mau<<endl;
+    cout<<tong(a,b).tu<<"/"<<tong(a,b).mau<<endl;
+    cout<<hieu(a,b).tu<<"/"<<hieu(a,b).mau<<endl;
+    /* Enter your code here. Read input from STDIN. Print output to STDOUT */   
+    return 0;
+}
+
+c2:
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+struct ps{
+    int tu;
+    int mau;
+};
+typedef struct ps ps;
+int gcd(int a,int b){
+    if(b==0) return a;
+    else return gcd(b,a%b);
+}
+int lcm(int a,int b){
+    return a/gcd(a,b)*b;
+}
+ps toigian(ps a){
+    ps res;
+    int uc=gcd(abs(a.tu),abs(a.mau));
+    res.tu=a.tu/uc;
+    res.mau=a.mau/uc;
+    return res;
+}
+ps tong(ps a,ps b){
+    ps res;
+   res.mau=lcm(a.mau,b.mau);
+    res.tu=a.tu*res.mau/a.mau+b.tu*res.mau/b.mau;
+    return toigian(res);
+}
+ps hieu(ps a,ps b){
+    ps res;
+    res.mau=lcm(a.mau,b.mau);
+    res.tu=a.tu*res.mau/a.mau-b.tu*res.mau/b.mau;
+    return toigian(res);
+}
+int main() {
+ps a;ps b;
+    scanf("%d%d%d%d",&a.tu,&a.mau,&b.tu,&b.mau);
+    a=toigian(a);b=toigian(b);
+      printf("%d/%d\n%d/%d\n",a.tu,a.mau,b.tu,b.mau);
+    ps t=tong(a,b),h=hieu(a,b);
+    printf("%d/%d\n%d/%d\n",t.tu,t.mau,h.tu,h.mau);
+    /* Enter your code here. Read input from STDIN. Print output to STDOUT */    
+    return 0;
+}
+c3:
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+struct ps{
+    int tu;
+    int mau;
+};
+typedef  struct ps ps;
+int gcd(int a,int b){
+    if(b==0) return a;
+    else return gcd(b,a%b);
+}
+int lcm(int a,int b){
+    return a/gcd(a,b)*b;
+    }
+ps toigian(ps a){
+    ps res;
+    int uc=gcd(abs(a.tu),abs(a.mau));
+    res.tu=a.tu/uc;
+    res.mau=a.mau/uc;
+    return res;
+}
+ps tong(ps a,ps b){
+    ps res;
+    int mc=lcm(a.mau,b.mau);
+    res.mau=mc;
+    res.tu=mc/a.mau*a.tu+mc/b.mau*b.tu;
+    return toigian(res);
+}
+ps hieu(ps a,ps b){
+    ps res;
+    int mc=lcm(a.mau,b.mau);
+    res.mau=mc;
+    res.tu=mc/a.mau*a.tu-mc/b.mau*b.tu;
+    return toigian(res);
+}
+int main() {
+ps a,b;
+    scanf("%d%d%d%d",&a.tu,&a.mau,&b.tu,&b.mau);
+    a=toigian(a);b=toigian(b);
+    printf("%d/%d\n%d/%d\n",a.tu,a.mau,b.tu,b.mau);
+    ps t=tong(a,b),h=hieu(a,b);
+    printf("%d/%d\n%d/%d\n",t.tu,t.mau,h.tu,h.mau);
+   /* Enter your code here. Read input from STDIN. Print output to STDOUT */    
+    return 0;
+}
