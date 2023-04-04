@@ -1,0 +1,99 @@
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+struct sinhvien{
+    string ten,ns,dc;
+    int t,l,h;
+};
+typedef struct sinhvien sinhvien;
+void nhap(sinhvien &x){
+    getline(cin,x.ten);
+    getline(cin,x.ns);
+    getline(cin,x.dc);
+    cin>>x.t>>x.l>>x.h;
+}
+int main() {
+    int n;
+    cin>>n;
+    sinhvien a[n];
+    int max1=0;
+    for(int i=0;i<n;i++){
+        cin.ignore();
+        nhap(a[i]);
+        max1=max(max1,a[i].t+a[i].l+a[i].h);
+    }
+    cout<<"DANH SACH THU KHOA :"<<endl;
+    for(int i=0;i<n;i++){
+        if (max1==a[i].t+a[i].l+a[i].h){
+            cout<<a[i].ten<<" "<<a[i].ns<<" "<<a[i].dc<<" "<<a[i].t+a[i].l+a[i].h<<endl;
+        }     
+    }
+    
+    cout<<"KET QUA XET TUYEN:"<<endl;
+    for(int i=0;i<n;i++){
+       cout<<a[i].ten<<" "<<a[i].ns<<" "<<a[i].dc<<" "<<a[i].t+a[i].l+a[i].h<<" ";
+            if(a[i].t+a[i].l+a[i].h>=24){
+                cout<<"DO\n";
+            }
+            else cout<<"TRUOT\n";
+    }
+    
+    /* Enter your code here. Read input from STDIN. Print output to STDOUT */   
+    return 0;
+}
+
+c2:
+
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+struct ts{
+    char ten[100];
+    char ns[100];
+    char dc[100];
+    int toan,ly,hoa;
+};
+typedef struct ts ts;
+void in (ts a){
+    printf("%s %s %s %d ",a.ten,a.ns,a.dc,a.toan+a.ly+a.hoa);
+}
+int find(ts a){
+    if(a.toan+a.ly+a.hoa>=24){
+        return 1;
+    }
+    return 0;
+}
+int main() {
+int n;
+    scanf("%d",&n);
+    ts a[n];
+    int max=0;
+    for(int i=0;i<n;i++){
+        while(getchar()!='\n');
+        fgets(a[i].ten,100,stdin);a[i].ten[strlen(a[i].ten)-1]='\0';
+         fgets(a[i].ns,100,stdin);a[i].ns[strlen(a[i].ns)-1]='\0';
+        fgets(a[i].dc,100,stdin);a[i].dc[strlen(a[i].dc)-1]='\0';
+        scanf("%d%d%d",&a[i].toan,&a[i].ly,&a[i].hoa);
+        max=fmax(max,a[i].toan+a[i].ly+a[i].hoa);
+    }
+    printf("DANH SACH THU KHOA :\n");
+    for(int i=0;i<n;i++){
+        if(max==a[i].toan+a[i].ly+a[i].hoa){
+            in(a[i]);
+            printf("\n");
+        }
+    }
+    printf("KET QUA XET TUYEN:\n");
+    for(int i=0;i<n;i++){
+        in(a[i]);
+        if(find(a[i])==1) printf("DO\n");
+        else printf("TRUOT\n");
+    }
+    /* Enter your code here. Read input from STDIN. Print output to STDOUT */    
+    return 0;
+}
