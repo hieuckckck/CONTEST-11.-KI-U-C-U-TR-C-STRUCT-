@@ -1,0 +1,115 @@
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+struct ps{
+    int thuc;
+    int ao;
+};
+ps tong(ps a,ps b){
+    ps res;
+    res.thuc=a.thuc+b.thuc;
+    res.ao=a.ao+b.ao;
+    return res;
+}
+ps hieu(ps a,ps b){
+    ps res;
+    res.thuc=a.thuc-b.thuc;
+    res.ao=a.ao-b.ao;
+    return res;
+}
+ps tich(ps a,ps b){
+    ps res;
+    res.thuc=a.thuc*b.thuc-a.ao*b.ao;
+    res.ao=a.thuc*b.ao+a.ao*b.thuc;
+    return res;
+}
+int main() {
+    ps a;ps b;
+    cin>>a.thuc>>a.ao>>b.thuc>>b.ao;
+    cout<<tong(a,b).thuc<<" "<<tong(a,b).ao<<endl;
+    cout<<hieu(a,b).thuc<<" "<<hieu(a,b).ao<<endl;
+    cout<<tich(a,b).thuc<<" "<<tich(a,b).ao<<endl;
+    /* Enter your code here. Read input from STDIN. Print output to STDOUT */   
+    return 0;
+}
+
+c2:
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+struct ps{
+    int thuc;
+    int ao;
+};
+typedef struct ps ps;
+ps tong(ps a,ps b){
+    ps res;
+    res.thuc=a.thuc+b.thuc;
+    res.ao=a.ao+b.ao;
+    return res;
+}
+ps hieu(ps a,ps b){
+    ps res;
+    res.thuc=a.thuc-b.thuc;
+    res.ao=a.ao-b.ao;
+    return res;
+}
+ps tich(ps a,ps b){
+    ps res;
+    res.thuc=a.thuc*b.thuc-a.ao*b.ao;
+    res.ao=a.thuc*b.ao+a.ao*b.thuc;
+    return res;
+}
+int main() {
+    ps a;ps b;
+    cin>>a.thuc>>a.ao>>b.thuc>>b.ao;
+    cout<<tong(a,b).thuc<<" "<<tong(a,b).ao<<endl;
+    cout<<hieu(a,b).thuc<<" "<<hieu(a,b).ao<<endl;
+    cout<<tich(a,b).thuc<<" "<<tich(a,b).ao<<endl;
+    /* Enter your code here. Read input from STDIN. Print output to STDOUT */   
+    return 0;
+}
+
+c3:
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+struct phuc{
+    int thuc;int ao;
+};
+typedef struct phuc phuc;
+phuc tong(phuc a,phuc b){
+    phuc res;
+    res.thuc=a.thuc+b.thuc;
+    res.ao=a.ao+b.ao;
+    return res;
+}
+phuc hieu(phuc a,phuc b){
+    phuc res;
+    res.thuc=a.thuc-b.thuc;
+    res.ao=a.ao-b.ao;
+    return res;
+}
+phuc tich(phuc a,phuc b){
+    phuc res;
+    res.thuc=a.thuc*b.thuc-a.ao*b.ao;
+    res.ao=a.thuc*b.ao+a.ao*b.thuc;
+    return res;
+}
+int main() {
+phuc a;phuc b;
+    scanf("%d%d%d%d",&a.thuc,&a.ao,&b.thuc,&b.ao);
+    phuc t=tong(a,b);phuc h=hieu(a,b);phuc c=tich(a,b);
+    printf("%d %d\n%d %d\n%d %d",t.thuc,t.ao,h.thuc,h.ao,c.thuc,c.ao);
+    /* Enter your code here. Read input from STDIN. Print output to STDOUT */    
+    return 0;
+}
