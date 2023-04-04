@@ -1,0 +1,188 @@
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <bits/stdc++.h>
+#include <algorithm>
+using namespace std;
+    struct ts{
+    string ten,ns,dc;
+    double gpa;
+    int stt;
+};
+typedef struct ts ts;
+void in (ts a){
+    cout<<a.ten<<" "<<a.ns<<" "<<a.dc<<" ";
+    cout<<fixed<<setprecision(2)<<a.gpa;
+}
+void nhap(ts &a){
+    getline(cin,a.ten);
+    getline(cin,a.ns);
+    getline(cin,a.dc);
+    cin>>a.gpa;
+}
+bool comp(ts a,ts b){
+    return a.ten<b.ten;
+}
+int main() {
+map<string,int>mp;
+int n;
+    scanf("%d",&n);
+    ts a[n];
+    for(int i=0;i<n;i++){
+       cin.ignore();
+        nhap(a[i]);
+     mp[a[i].dc]++;
+    }
+    sort(a,a+n,comp);
+    int max=0;
+    for(int i=0;i<n;i++){
+        if(max<mp[a[i].dc]){
+            max=mp[a[i].dc];
+        }
+    }
+    for(auto it:mp){
+        if(it.second==max){
+            cout<<it.first<<endl;
+        }
+    }
+   /*Enter your code here. Read input from STDIN. Print output to STDOUT */   
+    return 0;
+}
+
+c2:
+
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+struct ts{
+    char ten[100];
+    char ns[100];
+    char dc[100];
+    double gpa;
+};
+typedef struct ts ts;
+struct tinhthanh{
+    char ten[100];
+    int sl;
+};
+typedef struct tinhthanh tinhthanh;
+tinhthanh v[1000];
+int m=0;
+int find(char dc[]){
+    for(int i=0;i<m;i++){
+        if(strcmp(v[i].ten,dc)==0) return i;
+    }
+    return -1;
+}
+int comp(const void *a,const void *b){
+    tinhthanh *x=(tinhthanh*)a;
+    tinhthanh *y=(tinhthanh*)b;
+    return strcmp(x->ten,y->ten);
+}
+int main() {
+int n;
+    scanf("%d",&n);
+    ts a[n];
+    for(int i=0;i<n;i++){
+        while(getchar()!='\n');
+        fgets(a[i].ten,100,stdin);a[i].ten[strlen(a[i].ten)-1]='\0';
+         fgets(a[i].ns,100,stdin);a[i].ns[strlen(a[i].ns)-1]='\0';
+        fgets(a[i].dc,100,stdin);a[i].dc[strlen(a[i].dc)-1]='\0';
+        scanf("%lf",&a[i].gpa);
+        int pos=find(a[i].dc);
+        if(pos==-1){
+            strcpy(v[m].ten,a[i].dc);
+            v[m].sl=1;
+            m++;
+        }
+        else{
+            v[pos].sl++;
+        }
+    }
+    int max=0;
+    for(int i=0;i<m;i++){
+      if(max<v[i].sl){max=v[i].sl;}
+    }
+    qsort(v,m,sizeof(tinhthanh),comp);
+    for(int i=0;i<m;i++){
+        if(max==v[i].sl){
+            printf("%s\n",v[i].ten);
+        }
+    }
+   
+    /* Enter your code here. Read input from STDIN. Print output to STDOUT */    
+    return 0;
+}
+
+c3:
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+struct sv{
+    char ten[100];
+    char ns[100];
+    char dc[100];
+    double gpa;
+    int stt;
+};
+typedef struct sv sv;
+void in(sv a){
+    printf("%s %s %s %.2lf\n",a.ten,a.ns,a.dc,a.gpa);
+}
+struct tinhthanh{
+    char ten[100];
+    int sl;
+};
+typedef struct tinhthanh tinhthanh;
+tinhthanh v[1000];
+int m=0;
+int find(char dc[]){
+    for(int i=0;i<m;i++){
+        if(strcmp(dc,v[i].ten)==0) return i;
+    }
+    return -1;
+}
+int comp(const void *a,const void *b){
+    tinhthanh *x=(tinhthanh*)a;
+    tinhthanh *y=(tinhthanh*)b;
+    return strcmp(x->ten,y->ten);
+}
+int main() {
+int n;
+    scanf("%d",&n);
+    sv a[n];
+    int max;
+    for(int i=0;i<n;i++){
+        getchar();
+        fgets(a[i].ten,100,stdin);a[i].ten[strlen(a[i].ten)-1]='\0';
+        fgets(a[i].ns,100,stdin);a[i].ns[strlen(a[i].ns)-1]='\0';
+        fgets(a[i].dc,100,stdin);a[i].dc[strlen(a[i].dc)-1]='\0';
+        scanf("%lf",&a[i].gpa);
+        a[i].stt=i;
+        int pos=find(a[i].dc);
+        if(pos==-1){
+            strcpy(v[m].ten,a[i].dc);
+            v[m].sl=1;
+            m++;
+        }
+        else{
+            v[pos].sl++;
+        }
+         max=0;
+        for(int i=0;i<m;i++){
+            if(v[i].sl>max){
+                max=v[i].sl;
+            }
+        }
+    }
+    qsort(v,m,sizeof(tinhthanh),comp);
+    for(int i=0;i<m;i++){
+        if(v[i].sl==max){
+            printf("%s\n",v[i].ten);
+        }
+    }
+    /* Enter your code here. Read input from STDIN. Print output to STDOUT */    
+    return 0;
+}
